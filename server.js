@@ -34,22 +34,30 @@ const phoneSchema = new mongoose.Schema({
   
   const PhoneNumber = mongoose.model("PhoneNumber", phoneSchema);
 
+  const artistSchema = new mongoose.Schema({
+    name: {type: String, required: true},
+    phone: {type: String, required: true,unique: true},
+    city: {type: String,required: true}
+  });
+
+  const Artist = mongoose.model("Artist", artistSchema);
+
 app.post('/api/register', async(req,res) => {
     try{
-        const {phone} = req.body;
+        const {name,phone,city} = req.body;
 
         if(!phone){
             return res.status(400).json({error: 'Phone number is required.'});
         }
 
-        const existingPhone = await PhoneNumber.findOne({phone});
-        if(existingPhone){
+        const existingUser = await Artist.findOne({phone});
+        if(existingUser){
             return res.status(400).json({error: 'Artist already exists!'});
         }
 
-        const newPhone = new PhoneNumber({phone});
-        await newPhone.save();
-        res.json({message: 'Phone number saved successfully'});
+        const newUser = new Artist({name,phone,city});
+        await newUser.save();
+        res.json({message: 'Artist registered successfully'});
     }
 
     catch(error){
