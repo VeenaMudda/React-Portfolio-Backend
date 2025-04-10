@@ -57,7 +57,7 @@ app.post('/api/register', async(req,res) => {
 
         const newUser = new Artist({name,phone,city});
         await newUser.save();
-        res.json({message: 'Artist registered successfully'});
+        res.json({message: 'Artist registered successfully!'});
     }
 
     catch(error){
