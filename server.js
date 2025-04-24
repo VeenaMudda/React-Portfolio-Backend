@@ -14,7 +14,7 @@ const MongoUri = process.env.MONGO_URI;
 mongoose.connect(MongoUri).then(() => console.log('Connected to MongoDB Atlas')).catch(err => console.error('MongoDB connection error: ',err));
 
 //MongoDB connection
-const connectDb = async() => {
+/*const connectDb = async() => {
     try{
         await mongoose.connect('mongodb://127.0.0.1:27017/', {
             dbName: 'myPortfolioDatabase',
@@ -29,7 +29,7 @@ const connectDb = async() => {
         console.log(error);
         process.exit(1);
     }
-}
+}*/
 
 connectDb();
 
