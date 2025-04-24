@@ -29,9 +29,9 @@ mongoose.connect(MongoUri).then(() => console.log('Connected to MongoDB Atlas'))
         console.log(error);
         process.exit(1);
     }
-}*/
+}
 
-connectDb();
+connectDb();*/
 
 const phoneSchema = new mongoose.Schema({
     phone: { type: String, required: true },
