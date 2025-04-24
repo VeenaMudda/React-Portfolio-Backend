@@ -1,12 +1,17 @@
 const express = require('express');
 const request = require('request');
 const cors = require('cors');
+require('dotenv').config();
 const { default: mongoose } = require('mongoose');
 const app = express();
 const PORT = 3001;
 
 app.use(cors());
 app.use(express.json());
+
+//Mongo Atlas connection
+const MongoUri = process.env.MONGO_URI;
+mongoose.connect(MongoUri).then(() => console.log('Connected to MongoDB Atlas')).catch(err => console.error('MongoDB connection error: ',err));
 
 //MongoDB connection
 const connectDb = async() => {
